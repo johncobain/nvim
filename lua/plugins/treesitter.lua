@@ -5,7 +5,7 @@ return{
 		require ('nvim-treesitter.install').compilers = { 'zig' }
 		local config = require("nvim-treesitter.configs") 
 		config.setup({
-		ensure_installed = { "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html", "css", "python", "c", "cpp" },
+		auto_install = true,
 		highlight = { enable = true },
         	indent = { enable = true },
 		})
