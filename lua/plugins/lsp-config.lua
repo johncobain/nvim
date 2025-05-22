@@ -12,6 +12,22 @@ return {
     opts = {
       auto_install = true,
     },
+    config = function(_, opts)
+    local mlsp = require("mason-lspconfig")
+    mlsp.setup(opts)
+
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local lspconfig = require("lspconfig")
+
+    local servers = mlsp.get_installed_servers()
+    for _, server_name in ipairs(servers) do
+        if server_name ~= "jdtls" and server_name ~= "java_language_server" then
+          lspconfig[server_name].setup({
+            capabilities = capabilities,
+          })
+        end
+      end
+    end,
   },
   {
     "neovim/nvim-lspconfig",
